@@ -27,7 +27,7 @@ export default class Products extends Component {
                     model: 'Shrub',
                     size: '140mm',
                     description: 'A large leaf bushy shrub  to 1.5m with green & white marked leaves. Very hardy',
-                    image: '../img/plants/alcalypha.jpg',
+                    image: 'alcalypha.jpg',
                 },
                 {
                     id:2,
@@ -36,7 +36,7 @@ export default class Products extends Component {
                     model: 'Shrub',
                     size: '220mm',
                     description: 'Compact habit, small glossy green leaves, brilliant yellow trumpet flowers',
-                    image: '../img/plants/allamanda_sunee.jpg',
+                    image: 'allamanda_sunee.jpg',
 
                 },
                 {
@@ -46,7 +46,7 @@ export default class Products extends Component {
                     model: 'Groundcoverts',
                     size: 'none',
                     description: 'Clumping plant , iris like yellow flowers with brown spots',
-                    image: '../img/plants/dietes.jpg',
+                    image: 'dietes.jpg',
 
                 },
                 {
@@ -56,7 +56,7 @@ export default class Products extends Component {
                     model: 'Groundcoverts',
                     size: 'none',
                     description: 'Compact small shrub ideal as a border plant, bears masses of small mauve flowers',
-                    image: '../img/plants/cuphea.jpg',
+                    image: 'cuphea.jpg',
 
                 },
                 {
@@ -66,7 +66,7 @@ export default class Products extends Component {
                     model: 'Palm',
                     size: '600mm',
                     description: 'Tall solitary trunk palm, grey ringed trunk, long arching fronds ',
-                    image: '../img/plants/alexanderpalm.jpg',
+                    image: 'alexanderpalm.jpg',
 
                 },
                 {
@@ -76,7 +76,7 @@ export default class Products extends Component {
                     model: 'Fern',
                     size: '160mm',
                     description: 'Rosette forming fern, best grown in semi shade, bright green new growth',
-                    image: '../img/plants/sylverlady.jpg',
+                    image: 'sylverlady.jpg',
 
                 },
             ],
@@ -111,11 +111,10 @@ export default class Products extends Component {
 
         const items = filteredProducts.map((item, key) =>
 
-
             <Col lg="3" className="grid-products">
 
                 <Card style={{ width: '16rem' }} key={item.id}>
-                    <Card.Img variant="top" height="190.5px" src={`${item.image}`} />
+                    <Card.Img variant="top" height="190.5px" src={process.env.PUBLIC_URL +`/img/plants/${item.image}`} />
                     <Card.Body>
                         <Card.Title>{item.name}</Card.Title>
                         <Card.Text>

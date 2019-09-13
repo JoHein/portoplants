@@ -8,13 +8,13 @@ export default class Menu extends Component {
         return (
             <div>
                     <Navbar bg="dark" variant="dark" expand="lg">
-                        <LinkContainer to="/">
+                    <LinkContainer to="/portoplants">
                             <Navbar.Brand ><Image src="img/logo.png" fluid /></Navbar.Brand>
                         </LinkContainer>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="justify-content-end" style={{ width: "100%" }} >
-                            <IndexLinkContainer to="/">
+                            <IndexLinkContainer to="/portoplants">
                                     <Nav.Link>Home</Nav.Link>
                             </IndexLinkContainer>
                                 <LinkContainer to="/products">
