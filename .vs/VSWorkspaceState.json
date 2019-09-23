@@ -3,8 +3,9 @@
     "",
     "\\public",
     "\\src",
-    "\\src\\components"
+    "\\src\\components",
+    "\\src\\components\\reducers"
   ],
-  "SelectedNode": "\\src\\components\\Products.js",
+  "SelectedNode": "\\src\\components\\reducers\\Cartreducer.js",
   "PreviewInSolutionExplorer": false
 }

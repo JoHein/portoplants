@@ -1,5 +1,7 @@
 import React, { Component } from 'react'
 import { Pagination, Row, Col, Container, Card, ListGroup, ListGroupItem, Button } from 'react-bootstrap'
+import { connect } from 'react-redux'
+import { addToCart } from './actions/cartActions'
 
 //let active = 2;
 //let items = [];
@@ -13,73 +15,12 @@ import { Pagination, Row, Col, Container, Card, ListGroup, ListGroupItem, Button
 
 
 
-export default class Products extends Component {
+class Products extends Component {
     constructor(props) {
         super(props);
         this.state = {
             search: '',
-            typeM:'',
-            products: [
-                {
-                    id:1,
-                    name: 'Acalypha',
-                    price: '$29.9',
-                    model: 'Shrub',
-                    size: '140mm',
-                    description: 'A large leaf bushy shrub  to 1.5m with green & white marked leaves. Very hardy',
-                    image: 'alcalypha.jpg',
-                },
-                {
-                    id:2,
-                    name: 'Allamanda',
-                    price: '$14.9',
-                    model: 'Shrub',
-                    size: '220mm',
-                    description: 'Compact habit, small glossy green leaves, brilliant yellow trumpet flowers',
-                    image: 'allamanda_sunee.jpg',
-
-                },
-                {
-                    id: 3,
-                    name: 'Dietes',
-                    price: '$14.9',
-                    model: 'Groundcoverts',
-                    size: 'none',
-                    description: 'Clumping plant , iris like yellow flowers with brown spots',
-                    image: 'dietes.jpg',
-
-                },
-                {
-                    id: 4,
-                    name: 'Cuphea',
-                    price: '$8.9',
-                    model: 'Groundcoverts',
-                    size: 'none',
-                    description: 'Compact small shrub ideal as a border plant, bears masses of small mauve flowers',
-                    image: 'cuphea.jpg',
-
-                },
-                {
-                    id: 5,
-                    name: 'Alexander palm',
-                    price: '$99.9',
-                    model: 'Palm',
-                    size: '600mm',
-                    description: 'Tall solitary trunk palm, grey ringed trunk, long arching fronds ',
-                    image: 'alexanderpalm.jpg',
-
-                },
-                {
-                    id: 6,
-                    name: 'Silver lady',
-                    price: '$25.9',
-                    model: 'Fern',
-                    size: '160mm',
-                    description: 'Rosette forming fern, best grown in semi shade, bright green new growth',
-                    image: 'sylverlady.jpg',
-
-                },
-            ],
+            typeM:''
         }
     }
 
@@ -96,13 +37,16 @@ export default class Products extends Component {
 
     }
 
+    handleAddProduct = (id) => {
+        this.props.addToCart(id);
+    }
+
     render() {
 
         // Sort by price
-        // Display only model select
         // Adadptive Pagination
 
-        let filteredProducts = this.state.products.filter(
+        let filteredProducts = this.props.products.filter(
             (product) => {
                 return product.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
                     && product.model.toLowerCase().indexOf(this.state.typeM.toLowerCase()) !== -1;
@@ -122,13 +66,12 @@ export default class Products extends Component {
                         </Card.Text>
                     </Card.Body>
                     <ListGroup className="list-group-flush">
-                        <ListGroupItem><strong>Price:</strong> {item.price}</ListGroupItem>
+                        <ListGroupItem><strong>Price:</strong> ${item.price}</ListGroupItem>
                         <ListGroupItem><strong> Model:</strong> {item.model}</ListGroupItem>
                         <ListGroupItem><strong> Size:</strong> {item.size}</ListGroupItem>
                     </ListGroup>
                     <Card.Footer>
-                        <Button className="addBtn" variant="primary">Add </Button>
-                        <Button variant="info">More </Button>
+                        <Button onClick={() => { this.handleAddProduct(item.id) }} className="addBtn" variant="primary">Add </Button>
                     </Card.Footer>
                 </Card>
             </Col>
@@ -137,20 +80,18 @@ export default class Products extends Component {
 
 
         let momentsList = [];
-        this.state.products.forEach(({ id, model }) => momentsList.push({ id, model }));
+        this.props.products.forEach(({ id, model }) => momentsList.push({ id, model }));
 
         let uniqueSet = [...new Set(momentsList.map(product => product.model))];
 
         let sortedList = uniqueSet.sort()
             .map((model, index) => <option key={index} >{model}</option>);
-        console.log('ta mere', items);
 
         let noFound;
         if (items.length <= 0) {
                 noFound = <Col>
                     <h3>No result found</h3>
                 </Col>
-
         }
 
 
@@ -196,11 +137,28 @@ export default class Products extends Component {
                             <Pagination.Item>{20}</Pagination.Item>
                             <Pagination.Next />
                         </Pagination>
-					</Col>	
+                        </Col>	
+                        
                 </Row>
 					</Container>	
 			</div>
 			
 			)
     }
+
 }
+
+const mapStateToProps = (state) => {
+    return {
+        products: state.products
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addToCart: (id) => { dispatch(addToCart(id)) }
+    }
+}
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Products)

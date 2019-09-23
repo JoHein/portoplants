@@ -14,6 +14,9 @@ export default class Menu extends Component {
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="justify-content-end" style={{ width: "100%" }} >
+                            <LinkContainer to="/cart">
+                                <Nav.Link>Cart</Nav.Link>
+                            </LinkContainer>
                             <IndexLinkContainer to="/portoplants">
                                     <Nav.Link>Home</Nav.Link>
                             </IndexLinkContainer>
