@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/portoplants/static/css/main.0aaa6ff1.chunk.css",
-    "main.js": "/portoplants/static/js/main.24ee1ba3.chunk.js",
-    "main.js.map": "/portoplants/static/js/main.24ee1ba3.chunk.js.map",
+    "main.css": "/portoplants/static/css/main.4bb511b0.chunk.css",
+    "main.js": "/portoplants/static/js/main.dec1bfae.chunk.js",
+    "main.js.map": "/portoplants/static/js/main.dec1bfae.chunk.js.map",
     "runtime~main.js": "/portoplants/static/js/runtime~main.b276a4c4.js",
     "runtime~main.js.map": "/portoplants/static/js/runtime~main.b276a4c4.js.map",
     "static/css/2.266e55a5.chunk.css": "/portoplants/static/css/2.266e55a5.chunk.css",
-    "static/js/2.cea8f345.chunk.js": "/portoplants/static/js/2.cea8f345.chunk.js",
-    "static/js/2.cea8f345.chunk.js.map": "/portoplants/static/js/2.cea8f345.chunk.js.map",
+    "static/js/2.aa2d7b0a.chunk.js": "/portoplants/static/js/2.aa2d7b0a.chunk.js",
+    "static/js/2.aa2d7b0a.chunk.js.map": "/portoplants/static/js/2.aa2d7b0a.chunk.js.map",
     "index.html": "/portoplants/index.html",
-    "precache-manifest.745e69b1c5a794b8619aa935a10a1aaa.js": "/portoplants/precache-manifest.745e69b1c5a794b8619aa935a10a1aaa.js",
+    "precache-manifest.26851bebbba0728b30d1d7b6d6b38aba.js": "/portoplants/precache-manifest.26851bebbba0728b30d1d7b6d6b38aba.js",
     "service-worker.js": "/portoplants/service-worker.js",
     "static/css/2.266e55a5.chunk.css.map": "/portoplants/static/css/2.266e55a5.chunk.css.map",
-    "static/css/main.0aaa6ff1.chunk.css.map": "/portoplants/static/css/main.0aaa6ff1.chunk.css.map",
+    "static/css/main.4bb511b0.chunk.css.map": "/portoplants/static/css/main.4bb511b0.chunk.css.map",
     "static/media/style.css": "/portoplants/static/media/mainnur.30071f80.jpg"
   }
 }
