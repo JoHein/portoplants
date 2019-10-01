@@ -518,11 +518,25 @@ body.mobile-nav-active #mobile-nav-toggle {
   font-size: 32px;
 }
 
+.container{
+    margin-top:2em;
+}
+
 @media (max-width: 768px) {
   #about .about-container .title {
     padding-top: 15px;
   }
 }
+svg {
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+    font-size: 2em;
+}
+
+    svg:hover {
+        cursor: pointer;
+        opacity: .5;
+    }
 
 #about .about-container p {
   line-height: 26px;

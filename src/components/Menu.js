@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
-import { Nav, Navbar, Image } from 'react-bootstrap';
+import { Nav, Navbar } from 'react-bootstrap';
 import { LinkContainer, IndexLinkContainer } from "react-router-bootstrap";
+import { faHome, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 export default class Menu extends Component {
     
@@ -8,18 +10,15 @@ export default class Menu extends Component {
         return (
             <div>
                     <Navbar bg="dark" variant="dark" expand="lg">
-                    <LinkContainer to="/portoplants">
-                            <Navbar.Brand ><Image src="img/logo.png" fluid /></Navbar.Brand>
-                        </LinkContainer>
+                    <IndexLinkContainer to="/portoplants">
+                        <Navbar.Brand ><FontAwesomeIcon icon={faHome} /></Navbar.Brand>
+                    </IndexLinkContainer>
                         <Navbar.Toggle aria-controls="basic-navbar-nav" />
                         <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="justify-content-end" style={{ width: "100%" }} >
                             <LinkContainer to="/cart">
-                                <Nav.Link>Cart</Nav.Link>
+                                <Nav.Link><FontAwesomeIcon icon={faShoppingCart}/></Nav.Link>
                             </LinkContainer>
-                            <IndexLinkContainer to="/portoplants">
-                                    <Nav.Link>Home</Nav.Link>
-                            </IndexLinkContainer>
                                 <LinkContainer to="/products">
                                     <Nav.Link>Products</Nav.Link>
                                 </LinkContainer>

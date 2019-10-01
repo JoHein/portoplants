@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { Pagination, Row, Col, Container, Card, ListGroup, ListGroupItem, Button } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { addToCart } from './actions/cartActions'
-
+import { faPlusSquare } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 //let active = 2;
 //let items = [];
 //for (let number = 1; number <= 5; number++) {
@@ -71,7 +72,7 @@ class Products extends Component {
                         <ListGroupItem><strong> Size:</strong> {item.size}</ListGroupItem>
                     </ListGroup>
                     <Card.Footer>
-                        <Button onClick={() => { this.handleAddProduct(item.id) }} className="addBtn" variant="primary">Add </Button>
+                        <Button onClick={() => { this.handleAddProduct(item.id) }} className="addBtn" variant="primary"><FontAwesomeIcon icon={faPlusSquare}/> Add </Button>
                     </Card.Footer>
                 </Card>
             </Col>

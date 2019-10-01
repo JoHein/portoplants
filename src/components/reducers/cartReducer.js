@@ -1,4 +1,4 @@
-import { ADD_TO_CART } from '../actions/action-type/cart-actions'
+import { ADD_TO_CART, REMOVE_ITEM, SUB_QUANTITY, ADD_QUANTITY } from '../actions/action-type/cart-actions'
 
 const initState = {
     products: [
@@ -71,9 +71,9 @@ const initState = {
 const cartReducer = (state = initState, action) => {
 
     if (action.type === ADD_TO_CART) {
-        let addedItem = state.products.find(products => products.id === action.id)
+        let addedItem = state.products.find(product => product.id === action.id)
 
-        let existed_item = state.addedProducts.find(products => action.id === products.id)
+        let existed_item = state.addedProducts.find(product => action.id === product.id)
         if (existed_item) {
             addedItem.quantity += 1
             return {
@@ -94,6 +94,55 @@ const cartReducer = (state = initState, action) => {
 
         }
     }
+    //Remove item
+    if (action.type === REMOVE_ITEM) {
+        let itemToRemove = state.addedProducts.find(product => action.id === product.id)
+        let new_items = state.addedProducts.filter(product => action.id !== product.id)
+
+        //calculating the total
+        let newTotal = state.total - (itemToRemove.price * itemToRemove.quantity)
+        return {
+            ...state,
+            addedProducts: new_items,
+            total: newTotal
+        }
+    }
+
+    //For one item
+    if (action.type === ADD_QUANTITY) {
+        let addedItem = state.products.find(product => product.id === action.id)
+        addedItem.quantity += 1
+        let newTotal = state.total + addedItem.price
+        return {
+            ...state,
+            total: newTotal
+        }
+    }
+
+    if (action.type === SUB_QUANTITY) {
+        let addedItem = state.products.find(product => product.id === action.id)
+
+        //If quantity reach 0 then remove item
+        if (addedItem.quantity === 1) {
+            let new_items = state.addedProducts.filter(product => product.id !== action.id)
+            let newTotal = state.total - addedItem.price
+            return {
+                ...state,
+                addedProducts: new_items,
+                total: newTotal
+            }
+        }
+        else {
+            addedItem.quantity -= 1
+            let newTotal = state.total - addedItem.price
+            return {
+                ...state,
+                total: newTotal
+            }
+        }
+
+    }
+
     else {
         return state
     }
