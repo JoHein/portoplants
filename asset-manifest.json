@@ -1,6 +1,6 @@
 {
   "files": {
-    "main.css": "/portoplants/static/css/main.4bb511b0.chunk.css",
+    "main.css": "/portoplants/static/css/main.7673d637.chunk.css",
     "main.js": "/portoplants/static/js/main.83d31c1e.chunk.js",
     "main.js.map": "/portoplants/static/js/main.83d31c1e.chunk.js.map",
     "runtime~main.js": "/portoplants/static/js/runtime~main.b276a4c4.js",
@@ -9,10 +9,10 @@
     "static/js/2.4aab6a6c.chunk.js": "/portoplants/static/js/2.4aab6a6c.chunk.js",
     "static/js/2.4aab6a6c.chunk.js.map": "/portoplants/static/js/2.4aab6a6c.chunk.js.map",
     "index.html": "/portoplants/index.html",
-    "precache-manifest.6eaefc45362b0ccbd7a08bd9227dc7a8.js": "/portoplants/precache-manifest.6eaefc45362b0ccbd7a08bd9227dc7a8.js",
+    "precache-manifest.ae3b1ea401fd2df8b284bd69e136b9cf.js": "/portoplants/precache-manifest.ae3b1ea401fd2df8b284bd69e136b9cf.js",
     "service-worker.js": "/portoplants/service-worker.js",
     "static/css/2.266e55a5.chunk.css.map": "/portoplants/static/css/2.266e55a5.chunk.css.map",
-    "static/css/main.4bb511b0.chunk.css.map": "/portoplants/static/css/main.4bb511b0.chunk.css.map",
+    "static/css/main.7673d637.chunk.css.map": "/portoplants/static/css/main.7673d637.chunk.css.map",
     "static/media/style.css": "/portoplants/static/media/mainnur.30071f80.jpg"
   }
 }
