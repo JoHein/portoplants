@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import { Pagination, Row, Col, Container, Card, ListGroup, ListGroupItem, Button } from 'react-bootstrap'
+import React, { Component, useState } from 'react'
+import { Pagination, Row, Col, Container, Card, ListGroup, ListGroupItem, Button, CardGroup } from 'react-bootstrap'
 import { connect } from 'react-redux'
 import { addToCart } from './actions/cartActions'
 import { faPlusSquare } from "@fortawesome/free-solid-svg-icons";
@@ -21,10 +21,11 @@ class Products extends Component {
         super(props);
         this.state = {
             search: '',
-            typeM:''
+            typeM: '',
+            productPerPage: 4,
+            currentPage: 1
         }
     }
-
 
     handleChange = event => {
 
@@ -42,22 +43,25 @@ class Products extends Component {
         this.props.addToCart(id);
     }
 
+
     render() {
 
-        // Sort by price
+        // Sort by price and model
         // Adadptive Pagination
 
         let filteredProducts = this.props.products.filter(
             (product) => {
                 return product.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
-                    && product.model.toLowerCase().indexOf(this.state.typeM.toLowerCase()) !== -1;
+                    && product.model.toLowerCase().indexOf(this.state.typeM.toLowerCase()) !== -1
+                    && product.id > ((this.state.currentPage * this.state.productPerPage) - this.state.productPerPage) && product.id <= (this.state.currentPage * this.state.productPerPage);
             }
         )
+
 
         const items = filteredProducts.map((item, key) =>
 
             <Col lg="3" className="grid-products">
-
+                <CardGroup>
                 <Card style={{ width: '16rem' }} key={item.id}>
                     <Card.Img variant="top" height="190.5px" src={process.env.PUBLIC_URL +`/img/plants/${item.image}`} />
                     <Card.Body>
@@ -72,14 +76,16 @@ class Products extends Component {
                         <ListGroupItem><strong> Size:</strong> {item.size}</ListGroupItem>
                     </ListGroup>
                     <Card.Footer>
-                        <Button onClick={() => { this.handleAddProduct(item.id) }} className="addBtn" variant="primary"><FontAwesomeIcon icon={faPlusSquare}/> Add </Button>
+                        <Button onClick={() => { this.handleAddProduct(item.id) }} className="addBtn" variant="primary">
+                            <FontAwesomeIcon icon={faPlusSquare} /> Add </Button>
                     </Card.Footer>
-                </Card>
+                    </Card>
+                    </CardGroup>
             </Col>
 
         )
 
-
+        //Research//////
         let momentsList = [];
         this.props.products.forEach(({ id, model }) => momentsList.push({ id, model }));
 
@@ -95,6 +101,25 @@ class Products extends Component {
                 </Col>
         }
 
+        //Pagination///////
+
+        const pageNumbers = [];
+        for (let i = 1; i <= Math.ceil(this.props.products.length / this.state.productPerPage); i++) {
+            pageNumbers.push(i);
+        }
+
+        const previousPage = (pageNumber) => {
+            if (pageNumber >= 1 && pageNumber <= pageNumbers.length) {
+                this.setState({ currentPage: pageNumber });
+                return
+            } else if (pageNumber > pageNumbers.length) {
+                 
+               return this.setState({ currentPage: pageNumbers.length });
+            } else {
+               return this.setState({ currentPage: 1 });
+            }
+
+        }
 
         return (
             <div>
@@ -122,25 +147,37 @@ class Products extends Component {
                         {noFound}
                     </Row>
 
+
+
                 <Row className="justify-content-md-center">
                         <Col md="auto">
+                            <Pagination size="sm">
+                                {//before
+                                }
+                                <Pagination.Prev onClick={() => previousPage(this.state.currentPage - 1)} />
+                                <Pagination.Item active={this.state.currentPage === 1} onClick={() => previousPage(1)}>{1}</Pagination.Item>
+                                {this.state.currentPage > 1 ? <Pagination.Ellipsis /> : null} 
+                                {this.state.currentPage > 1 ? <Pagination.Item onClick={() => previousPage(this.state.currentPage - 1)}>{this.state.currentPage - 1}</Pagination.Item> : null}
 
-                        <Pagination size="sm">
-                            <Pagination.Prev />
-                            <Pagination.Item>{1}</Pagination.Item>
-                            <Pagination.Ellipsis />
+                                {//mid
+                                }
+                                {(this.state.currentPage > 1) &&
+                                    (this.state.currentPage < Math.ceil(this.props.products.length / this.state.productPerPage))
+                                    ? <Pagination.Item active={this.state.currentPage !== 1}
+                                    onClick={() => previousPage(this.state.currentPage)}>{this.state.currentPage}M</Pagination.Item> : null} 
 
-                            <Pagination.Item>{11}</Pagination.Item>
-                            <Pagination.Item active>{12}</Pagination.Item>
-                            <Pagination.Item>{13}</Pagination.Item>
+                                {//after
+                                }
+                                {this.state.currentPage < pageNumbers.length ? <Pagination.Item onClick={() => previousPage(this.state.currentPage + 1)}>{this.state.currentPage + 1}</Pagination.Item> : null}
+                                {this.state.currentPage < pageNumbers.length ? <Pagination.Ellipsis />: null}
+                                {this.state.currentPage <= pageNumbers.length ? <Pagination.Item onClick={() => previousPage(Math.ceil(this.props.products.length / this.state.productPerPage))}>{Math.ceil(this.props.products.length / this.state.productPerPage)}</Pagination.Item> : null}
 
-                            <Pagination.Ellipsis />
-                            <Pagination.Item>{20}</Pagination.Item>
-                            <Pagination.Next />
+                                <Pagination.Next onClick={() => previousPage(this.state.currentPage +1)}/>
                         </Pagination>
                         </Col>	
                         
                 </Row>
+                
 					</Container>	
 			</div>
 			

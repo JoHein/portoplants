@@ -2,10 +2,12 @@
   "ExpandedNodes": [
     "",
     "\\public",
+    "\\public\\css",
     "\\src",
     "\\src\\components",
-    "\\src\\components\\reducers"
+    "\\src\\components\\reducers",
+    "\\src\\css"
   ],
-  "SelectedNode": "\\src\\components\\reducers\\Cartreducer.js",
+  "SelectedNode": "\\src\\components\\Products.js",
   "PreviewInSolutionExplorer": false
 }
