@@ -51,9 +51,18 @@ class Products extends Component {
 
         let filteredProducts = this.props.products.filter(
             (product) => {
-                return product.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
-                    && product.model.toLowerCase().indexOf(this.state.typeM.toLowerCase()) !== -1
-                    && product.id > ((this.state.currentPage * this.state.productPerPage) - this.state.productPerPage) && product.id <= (this.state.currentPage * this.state.productPerPage);
+                if ((this.state.search || this.state.typeM) != '') {
+
+                    return product.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
+                        && product.model.toLowerCase().indexOf(this.state.typeM.toLowerCase()) !== -1
+
+                } else {
+
+                    return product.name.toLowerCase().indexOf(this.state.search.toLowerCase()) !== -1
+                        && product.model.toLowerCase().indexOf(this.state.typeM.toLowerCase()) !== -1
+                        && product.id > ((this.state.currentPage * this.state.productPerPage) - this.state.productPerPage) && product.id <= (this.state.currentPage * this.state.productPerPage);
+
+                }
             }
         )
 
